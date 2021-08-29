@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+<title>Stripe Payment Demo</title>
+
+<head>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sansita:ital,wght@1,800&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        header {
+            width: 100%;
+            height: 70px;
+        }
+
+        nav {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.89);
+            height: 70px;
+            position: sticky;
+        }
+        
+        nav .icon{
+            
+            float: left;
+            font-size: 18px;
+            color: black;
+            line-height: 20px;
+            margin: 0px 0px 0px 200px;
+            background-color: cadetblue;
+            height: 100%;
+            border-radius: 10px 10px 35px 35px;
+            padding-top: 3px;
+        }
+        nav .icon p{
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        nav .icon .firstline{
+            font-size: 45px;
+            padding-top: 12px;
+            font-family: fantasy ;
+        }
+
+        nav .icon .belowline{
+            padding-top: 8px;
+            font-weight: 600;
+            font-size: 22px;
+        }
+    
+
+        nav ul {
+            float: right;
+            margin-right: 50px;
+            line-height: 70px;
+        }
+
+        nav ul li {
+            display: inline-block;
+            line-height: 70px;
+            color: burlywood;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 25px;
+            padding: 7px 13px;
+            line-height: 70px;
+            border-radius: 3px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        header nav ul li a.active,
+        a:hover {
+            background-color: grey;
+        }
+
+
+        .home-class {
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            background-image: linear-gradient(rgba(135, 207, 235, 0.445), rgba(0, 0, 0, 0.514)), url('https://images.unsplash.com/photo-1567057420215-0afa9aa9253a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1952&q=80');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: right;
+
+            background-attachment: scroll;
+            position: relative;
+        }
+        
+        .innertxt {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            width: 700px;
+            height: 100%;
+            margin-left: 50px;
+        }
+
+        .innertxt .innerheading {
+            padding: 100px 0px 0px 0px;
+        }
+
+        .innertxt .innerheading h2 {
+            margin: 20px;
+            font-size: 62px;
+            color: khaki;
+            text-shadow: 7px 7px 7px black;
+            font-family: 'Sansita', sans-serif;
+        }
+
+        .innertxt .innerpara {
+            margin: 20px 35px;
+
+        }
+
+        .innertxt .innerpara p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 19px;
+            font-weight: bold;
+            color: thistle;
+
+        }
+
+        .innertxt .btn {
+            justify-content: center;
+            background: darkblue;
+            color: white;
+            padding-top: 4px;
+            height: 70px;
+            margin: 10px 230px;
+            border-radius: 15px;
+
+        }
+
+        .innertxt .btn {
+            padding-top: 0px;
+            font-size: 30px;
+            margin: 2px 230px;
+        }
+        .innertxt .btn .upperdonate{
+            z-index: 1;
+            margin-top: 10px;
+        }
+        .innertxt .btn .pay{
+            width: 100%;
+            height: 100%;
+            padding: 2px;
+            margin-top: -55px;
+            opacity: 0;
+        }
+        .innertxt .btn .pay form{
+            width: 100%;
+            height: 100%;
+            transform: scale(2);
+        }
+        .innertxt .btn:hover{
+            font-size: 34px;
+            transform: scale(1.1);
+        }
+        .About-cl {
+            background-color: rgba(128, 128, 128, 0.753);
+            height: 752px;
+            width: 100%;
+            align-content: center;
+            padding: 75px 0px;
+            position: relative;
+        }
+
+        .about-content {
+            margin: 0px 100px;
+            height: 600px;
+            border-radius: 40px;
+            background-image: linear-gradient(to right, rgba(194, 2, 2, 0.87), rgba(255, 255, 0, 0.651));
+            display: flex;
+            flex-direction: column;
+        }
+
+        .abt-heading {
+            padding: 17px 90px;
+            height: 100px;
+            display: inline-block;
+            border-radius: 60px;
+            background-color: rgb(0, 0, 0);
+            margin: 20px 430px
+        }
+
+        .about-content h2 {
+            font-size: 55px;
+            font-family: 'Staatliches', cursive;
+            letter-spacing: 4px;
+            color: rgb(255, 255, 255);
+        }
+
+        .abt-content {
+            align-content: center;
+            height: 400px;
+            padding: 0px 120px;
+            background-image: linear-gradient(rgba(135, 207, 235, 0.568), rgb(0, 0, 0)), url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: right;
+            background-attachment: fixed;
+            position: relative;
+
+        }
+
+        .abt-content p {
+            font-size: 20px;
+            text-align: left;
+            color: lightcyan;
+            font-family: fangsong;
+            padding: 90px 0px;
+        }
+
+        .Work-class {
+
+            background-color: rgba(128, 128, 128, 0.753);
+            height: 752px;
+            width: 100%;
+            align-content: center;
+
+        }
+
+        .work-content {
+            font-family: 'Poppins', sans-serif;
+            min-height: 752px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(194, 2, 2, 0.87), rgba(255, 255, 0, 0.651) 50%, #fff 50%, #fff 100%);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            position: relative;
+            background-size: 100% 100%;
+        }
+
+        .workheading {
+            height: 100px;
+            width: 100%;
+        }
+
+        .workheading h3 {
+            margin: 0px 433px;
+            font-size: 67px;
+            background-color: rgba(0, 0, 0, 0.726);
+            padding: 0px 24px;
+            border-radius: 25px;
+            color: white;
+
+        }
+
+        .worklist {
+            width: 1100px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .worklist .workbox {
+            position: relative;
+            width: 320px;
+            background: #fff;
+            height: 400px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, .1);
+        }
+
+        .workbox .title {
+            color: rgb(0, 0, 0);
+            font-size: 2em;
+            font-weight: bold;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .workbox:hover .title {
+            opacity: 0;
+        }
+
+        .workbox:hover {
+            transform: scale(1.2);
+            box-shadow: 2px 2px 2px black;
+        }
+
+        .workbox .innerbox {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .workbox .innerbox:hover>* {
+            transform: translateY(20px);
+            transition: transform 0.25s;
+        }
+
+        .workbox .innerbox:hover {
+            opacity: 1;
+        }
+
+        .workbox .innerbox:hover>* {
+            transform: translateY(0);
+        }
+
+        .workbox h3 {
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .innerbox p {
+            font-size: 1em;
+            margin-top: 0.25em;
+        }
+
+        #box1 {
+            background-image: linear-gradient(rgba(135, 207, 235, 0.445), rgba(0, 0, 0, 0.514)), url('https://images.unsplash.com/photo-1536337005238-94b997371b40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: scroll;
+            position: relative;
+        }
+
+        #box2 {
+            background-image: linear-gradient(rgba(135, 207, 235, 0.445), rgba(0, 0, 0, 0.514)), url('https://images.unsplash.com/photo-1622560949450-a36360ef213b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1868&q=80');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: scroll;
+            position: relative;
+        }
+
+        #box3 {
+            background-image: linear-gradient(rgba(135, 207, 235, 0.445), rgba(0, 0, 0, 0.514)), url('https://images.unsplash.com/photo-1524069290683-0457abfe42c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: scroll;
+            position: relative;
+        }
+
+        .contact-cls {
+            height: 752px;
+            width: 100%;
+            background-color: rgba(255, 218, 185, 0.63);
+            position: relative;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .contactcnt {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, black, transparent);
+            color: blanchedalmond;
+            padding: 40px 35px;
+        }
+
+        .contactcnt .part1 {
+            height: 70%;
+            width: 100%;
+            background: linear-gradient(rgba(194, 2, 2, 0.87), rgba(255, 255, 0, 0.651));
+            padding: 10px 25px;
+            margin: 0px 0px;
+            border-radius: 25px 25px;
+            z-index: 2;
+        }
+
+        .contactcnt .part2 {
+            height: 30%;
+            width: 100%;
+            border-radius: 25px;
+            background-color: white;
+            padding: 10px 10px;
+            margin: 0px 0px;
+            display: flex;
+            z-index: 1;
+        }
+
+        .part1 .contact-title {
+            float: left;
+            justify-content: center;
+            width: 600px;
+            padding-left: 100px;
+            position: relative;
+            top: 20%;
+            color: rgb(255, 255, 255);
+            font-size: 70px;
+            font-weight: bold;
+            text-shadow: 4px 4px 4px black;
+
+        }
+
+        .formcl {
+            position: relative;
+            font-size: 20px;
+            width: 700px;
+            float: right;
+            margin-top: 80px;
+            text-align: left;
+        }
+
+        .contactinfo {
+            width: 100%;
+            color: black;
+            display: flex;
+            justify-content: center;
+        }
+
+        .contactinfo .box {
+            width: 200px;
+            font-size: 20px;
+            font-size: 40px;
+        }
+
+        .contactinfo .box .text p {
+            font-size: 17px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        footer {
+            height: 150px;
+            width: 100%;
+            background-color: black;
+        }
+
+        footer .footcontent {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        footer .footcontent .icons {
+            display: flex;
+            justify-content: center;
+        }
+
+        footer .footcontent a {
+            margin: 0 20px;
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            border-radius: 8px;
+            box-shadow: 0px 0px 2px 2px white;
+            overflow: hidden;
+            font-size: 20px;
+            text-align: center;
+            padding: 4px 0px;
+        }
+
+        footer .footcontent .copyright {
+            color: white;
+            padding: 4px 0px;
+        }
+
+        footer .footcontent .copyright p {
+            margin-top: 10px;
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="firsthome" id="homepage">
+        <header>
+            <nav>
+                <div class="icon">
+                    <p class="firstline">EDUCATE</p>
+                    <p class="belowline"> THE POOR</p>
+
+                </div>
+                <ul>
+                    <li><a class="active" href="#homepage">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#work">Our Work</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section class="boxarea" id="first">
+            <div class="home-class" id="home">
+                <div class="innertxt">
+                    <div class="innerheading">
+                        <h2>GIVING IS THE GREATEST ACT OF GRACE!
+                            <br>
+                        </h2>
+                    </div>
+                    <div class="innerpara">
+                        <p>We mainly focus on Holistic Child Development model, we have taken
+                            children
+                            from various areas in and around the district who really need financial support for
+                            education.
+                        </p>
+                    </div>
+                    <div class="btn">
+                        <div class="upperdonate">
+                            DONATE US
+                        </div>
+                        <div class="pay">
+                            <form action="payment" method="POST">
+                                <script 
+                                    src="//checkout.stripe.com/v2/checkout.js" class="stripe-button"
+                                    data-key="<%= key %>" data-amount="10000" data-currency="inr"
+                                    data-name="Educate The Poor" data-description="Humans for Better Human Future"
+                                    data-locale="auto">
+                                </script>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <section class="About-cl" id="about">
+        <div class="about-content">
+            <div class="abt-heading">
+                <h2>ABOUT US</h2>
+            </div>
+            <div class="abt-content">
+                <p>
+                    Educate the poor, an NGO for poor child education, is an NGO in India directly benefitting over
+                    15,00,000 children and their families every year, through more than 400 live welfare projects on
+                    education, healthcare, livelihood and women empowerment, in over 2000 remote villages and slums
+                    across 25 states of India.
+                    <br>
+                    Educate the poor has continued to evolve since its beginnings in 1958, adapting to the
+                    specific needs of the countries in which it works. Originally conceived as a bond of friendship
+                    between the peoples of Southeast Asia, Children of the Mekong strived to stay faithful to its
+                    principal goal: to love and support poor, suffering children by offering them a future through
+                    education.
+                </p>
+            </div>
+
+        </div>
+    </section>
+    <section class="Work-class" id="work">
+        <div class="work-content">
+            <div class="workheading">
+                <h3>OUR WORK</h3>
+            </div>
+            <br>
+            <br>
+            <div class="worklist">
+                <div class="workbox" id="box1">
+                    <div class="title">
+                        EDUCATION
+                    </div>
+                    <div class="innerbox">
+                        <h3>EDUCATION</h3>
+                        <p>Mission Education, the education programme provides basic education and healthcare to
+                            underprivileged children, with the belief that education is both the means as well as the
+                            end to a better life because it empowers an individual to earn his/her livelihood while also
+                            increasing one's awareness on a range of issues; in the process helping him/her evolve as a
+                            better citizen.</p>
+                    </div>
+                </div>
+                <div class="workbox" id="box2">
+                    <div class="title">
+                        CHILD PROTECTION
+                    </div>
+                    <div class="innerbox">
+                        <h3>CHILD PROTECTION</h3>
+                        <p>We work to protect children from different forms of persecution like child labour, child
+                            marriage, abuse, and other forms of exploitation.
+                            94,58,423 children now are protected from different forms of harm.</p>
+                    </div>
+                </div>
+                <div class="workbox" id="box3">
+                    <div class="title">
+                        SPECIAL SUPPORT PROGRAMME
+                    </div>
+                    <div class="innerbox">
+                        <h3>SPECIAL SUPPORT PROGRAMME</h3>
+                        <p>Educate the Poor, strives to support and empower individuals, particularly underprivileged
+                            children enabling them to meet basic ambitions of their life and realize their potential,
+                            make informed choices, resist oppression, fight for rightful existence and facilitate new
+                            possibilities and opportunities for them.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contact-cls" id="contact">
+        <div class="contactcnt">
+            <div class="part1">
+                <div class="contact-title">
+                    CONTACT US HERE..
+                </div>
+                <div class="formcl">
+                    <div class="row g-3">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+                        </div>
+                    </div>
+                    <!-- formlink2 -->
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1"
+                            placeholder="email@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Enter Query/Comments</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                            placeholder="Write here..."></textarea>
+                    </div>
+                    <!-- buttonlink -->
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+            <div class="part2">
+                <div class="contactinfo">
+                    <div class="box">
+                        <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                        <div class="text">
+                            <h3>Address</h3>
+                            <p> 14, ETP Co-op Housing Society, Canada Corner,Nashik</p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                        <div class="text">
+                            <h3>Phone</h3>
+                            <p> 7767943884</p>
+                            <p> 7507804232</p>
+                            <p> 0253-2222-9999</p>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                        <div class="text">
+                            <h3>Email</h3>
+                            <p> EducatethePoor@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footcontent">
+            <div class="icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="copyright">
+                <p>EducateThePoor &copy; All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
