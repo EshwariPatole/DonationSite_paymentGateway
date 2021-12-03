@@ -3,10 +3,9 @@
 <title>Stripe Payment Demo</title>
 
 <head>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sansita:ital,wght@1,800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sansita:ital,wght@1,800&display=swap" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,9 +54,9 @@
             height: 70px;
             position: sticky;
         }
-        
-        nav .icon{
-            
+
+        nav .icon {
+
             float: left;
             font-size: 18px;
             color: black;
@@ -68,22 +67,24 @@
             border-radius: 10px 10px 35px 35px;
             padding-top: 3px;
         }
-        nav .icon p{
+
+        nav .icon p {
             margin-top: 0;
             margin-bottom: 0;
         }
-        nav .icon .firstline{
+
+        nav .icon .firstline {
             font-size: 45px;
             padding-top: 12px;
-            font-family: fantasy ;
+            font-family: fantasy;
         }
 
-        nav .icon .belowline{
+        nav .icon .belowline {
             padding-top: 8px;
             font-weight: 600;
             font-size: 22px;
         }
-    
+
 
         nav ul {
             float: right;
@@ -126,7 +127,7 @@
             background-attachment: scroll;
             position: relative;
         }
-        
+
         .innertxt {
             display: flex;
             flex-direction: column;
@@ -177,26 +178,31 @@
             font-size: 30px;
             margin: 2px 230px;
         }
-        .innertxt .btn .upperdonate{
+
+        .innertxt .btn .upperdonate {
             z-index: 1;
             margin-top: 10px;
         }
-        .innertxt .btn .pay{
+
+        .innertxt .btn .pay {
             width: 100%;
             height: 100%;
             padding: 2px;
             margin-top: -55px;
             opacity: 0;
         }
-        .innertxt .btn .pay form{
+
+        .innertxt .btn .pay form {
             width: 100%;
             height: 100%;
             transform: scale(2);
         }
-        .innertxt .btn:hover{
+
+        .innertxt .btn:hover {
             font-size: 34px;
             transform: scale(1.1);
         }
+
         .About-cl {
             background-color: rgba(128, 128, 128, 0.753);
             height: 752px;
@@ -556,8 +562,7 @@
                         </div>
                         <div class="pay">
                             <form action="payment" method="POST">
-                                <script 
-                                    src="//checkout.stripe.com/v2/checkout.js" class="stripe-button"
+                                <script src="//checkout.stripe.com/v2/checkout.js" class="stripe-button"
                                     data-key="<%= key %>" data-amount="10000" data-currency="inr"
                                     data-name="Educate The Poor" data-description="Humans for Better Human Future"
                                     data-locale="auto">
